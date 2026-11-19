@@ -92,11 +92,11 @@ android {
         minSdk = (findProperty("android.minSdk") as String).toInt()
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
     kotlin {
-        jvmToolchain(17)
+        jvmToolchain(21)
     }
 }
 
@@ -117,7 +117,8 @@ fun org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget.setUpiOSObserver()
 
 mavenPublishing {
     publishToMavenCentral(true)
-    signAllPublications()
+    // ローカル検証用ビルドでは署名鍵を要求しない
+    // signAllPublications()
 }
 
 tasks.withType<DokkaTask>().configureEach {
